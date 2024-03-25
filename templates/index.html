@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Simple Blog</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     <h1>Blog</h1>
     <a href="/create">Create Post</a>
     <ul class="Posts">
         {% for post in posts %}
-            <li class="post">
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.content }}</p>
-                <a href="{{ url_for('edit', post_id=post.id) }}">Edit</a>
-                <form action="{{ url_for('delete', post_id=post.id) }}" method="post">
-                    <button type="submit">delete</button>
+        <li class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <div class="post-footer">
+                <a class="editBut" href="{{ url_for('edit', post_id=post.id) }}">Edit</a>
+                <form class="delete-form" action="{{ url_for('delete', post_id=post.id) }}" method="post">
+                    <button class="delBut" type="submit">Delete</button>
                 </form>
-            </li>
+            </div>
+        </li>
         {% endfor %}
     </ul>
 </body>
+
 </html>
